@@ -1,6 +1,11 @@
 import {
-  MenuContentPage, ProductListPage, ShoppingCartPage, LoginPage, AddressStepPage,
-  ShippingStepPage, PaymentStepPage,
+  MenuContentPage,
+  ProductListPage,
+  ShoppingCartPage,
+  LoginPage,
+  AddressStepPage,
+  ShippingStepPage,
+  PaymentStepPage,
 } from "../page/index";
 
 const menuContentPage = new MenuContentPage();
@@ -13,19 +18,23 @@ const paymentStepPage = new PaymentStepPage();
 
 describe("Buy a t-shirt", () => {
   it("then should be bought a t-shirt", () => {
+    const email = "aperdomobo@gmail.com";
+    const password = "WorkshopProtractor";
+    const confirmOrderMessage = "Your order on My Store is complete.";
+
     menuContentPage.visitMenuContentPage();
     menuContentPage.goToTShirtMenu();
     productListPage.clickFirstTshirt();
     productListPage.goToCheckout();
     shoppingCartPage.goToCheckout();
-    loginPage.logInEmail();
-    loginPage.logInPassword();
+    loginPage.logInEmail(email);
+    loginPage.logInPassword(password);
     loginPage.submitLogIn();
     addressStepPage.proceedToCheckout();
     shippingStepPage.acceptTerms();
     shippingStepPage.proceedToCheckout();
     paymentStepPage.chooseBankPayment();
     paymentStepPage.confirmOrder();
-    paymentStepPage.orderConfirmation();
+    paymentStepPage.orderConfirmation(confirmOrderMessage);
   });
 });
